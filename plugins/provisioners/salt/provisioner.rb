@@ -317,8 +317,8 @@ module VagrantPlugins
                 end
               end
             else
-              @machine.communicate.sudo("salt-call saltutil.sync_all")
-              @machine.communicate.sudo("salt-call state.highstate #{get_loglevel}#{get_colorize}#{get_pillar}") do |type, data|
+              @machine.communicate.sudo("salt-call --local saltutil.sync_all")
+              @machine.communicate.sudo("salt-call --local state.highstate #{get_loglevel}#{get_colorize}#{get_pillar}") do |type, data|
                 if @config.verbose
                   @machine.env.ui.info(data)
                 end
